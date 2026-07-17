@@ -5,3 +5,4 @@ add the untracked and changed files
 Add an atomic commit message with an appropriate message
 
 add a tag such as "feat", "fix", "docs", etc. that reflects our work
+do not include yourself as the contributor or co-author
