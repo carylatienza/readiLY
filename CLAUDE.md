@@ -4,26 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-readiLY is pre-implementation: there is no application code, no package manifest, and no chosen tech stack yet. The repository currently contains business/planning docs and agent tooling only. Do not assume a framework, language, or build system — confirm with the user or check `docs/startup qc/` and any OpenSpec changes before writing code.
+readiLY is pre-implementation: there is no application code or package manifest yet, but the stack is locked (see `.agents/plans/index.md`, decided 2026-07-18): **Kotlin Android-native, Jetpack Compose, MVVM, Hilt, Room (offline-first), sherpa-onnx on-device ASR, Supabase (Postgres + Auth) for cloud sync.** The repository currently contains business/planning docs, research, a 7-step implementation plan (`.agents/plans/`), and agent tooling. Check `.agents/plans/index.md` for build order and hard constraints (offline-first, no raw audio to cloud, English-only ASR for MVP) before writing code.
 
 Business/product context lives in `docs/startup qc/`:
 - `ReadiLY_Business Plan V1.md`, `ReadiLY_Lean_Canvas.md`, `ReadiLY_Pitch_Deck.md` — product concept, market, positioning
+- `ReadiLY In-Depth Details.md`, `Startup QC Details.md` — expanded business/product detail
 - `Startup_QC_Onboarding.md` — program onboarding context
-
-## Spec-driven workflow (OpenSpec)
-
-This repo uses OpenSpec (`openspec/`) for spec-driven change management, with matching slash commands installed for both this agent (`.agent/`) and Codex (`.codex/`). `openspec/specs/` and `openspec/changes/` are currently empty — no capabilities have been spec'd yet.
-
-Workflow commands (`/opsx:*`):
-- `/opsx:explore` — think through a problem before committing to a change; never writes code
-- `/opsx:propose` — scaffold a new change and generate proposal.md / design.md / tasks.md via `openspec new change "<name>"`
-- `/opsx:apply` — implement a change once its required artifacts are ready
-- `/opsx:sync` — sync specs after a change is implemented
-- `/opsx:archive` — archive a completed change
-
-Useful raw CLI: `openspec status --change "<name>" --json`, `openspec list --json`.
-
-`openspec/config.yaml` has an empty `context:` block — once a stack is chosen, fill it in there so it's surfaced to future artifact generation.
+- `MentorING Session/` — mentor Q&A and feedback notes
 
 ## Claude Code commands (`.claude/commands/`)
 
@@ -39,11 +26,15 @@ Useful raw CLI: `openspec status --change "<name>" --json`, `openspec list --jso
 
 - `agent-browser` — CLI-driven browser automation (navigate, click, fill, screenshot, network mocking) for manual or scripted web testing
 - `e2e-test` — full end-to-end test pass: parallel research agents map user journeys + DB schema + likely bugs, then agent-browser drives every journey with screenshots and DB validation. Requires Linux/WSL/macOS (not native Windows) and an existing browser-accessible frontend — not usable until there's an app to test
-
-## Reference templates (`project-skills/`)
-
-A standalone template library (PRD, TDD, coding standards, checklists, business docs) — not wired into any command. Copy from it manually when a document is needed; see `project-skills/README.md` for the suggested order of use.
+- `ceo-advisor` — executive strategy, board prep, investor/stakeholder management
+- `content-creator` — SEO-optimized marketing content with brand-voice consistency
+- `launch-strategy` — launch planning
+- `pricing-strategy` — pricing decisions
+- `product-manager-toolkit` — general PM workflows
+- `saas-metrics-coach` — SaaS metrics guidance
+- `senior-fullstack` — general fullstack engineering assistance
+- `seo-audit` — SEO auditing
 
 ## Git
 
-No commits exist yet on `main`. Remote: `https://github.com/carylatienza/readiLY.git`.
+Work happens on `main`. Remote: `https://github.com/carylatienza/readiLY.git`.
