@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReadiLY: CRLA and Phil-IRI scored on a tablet, offline</title>
+<meta name="description" content="ReadiLY is built to score CRLA and Phil-IRI in about three minutes a child, offline, and fill in the DepEd form. No child's voice leaves the tablet.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Test all forty children in the first week of school">
+<meta property="og:description" content="ReadiLY is built to score CRLA and Phil-IRI in about three minutes a child, offline, and fill in the DepEd form. No child's voice leaves the tablet.">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:image:alt" content="ReadiLY tablet result screen with sample data: 62 words correct per minute, 94% accuracy, Instructional level.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FBFAF7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  // Hide reveal targets before first paint; fall back to visible if main.js never runs.
+  document.documentElement.classList.add('js');
+  setTimeout(function () { if (!window.__readily) document.documentElement.classList.remove('js'); }, 2500);
+</script>
+<script src="main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Announcement -->
+<div class="bar">
+  <span>Pilot stage<span class="bar-long"> · We are choosing pilot schools now.</span></span>
+  <a href="#join" data-cta="announcement">Join the pilot list →</a>
+</div>
+
+<!-- Nav -->
+<header class="nav" data-nav>
+  <nav class="nav-inner wrap" aria-label="Main">
+    <a class="logo" href="#top" aria-label="ReadiLY home">
+      <span class="logo-mark" aria-hidden="true"></span>Readi<span class="logo-ly">LY</span>
+    </a>
+    <div class="nav-links">
+      <a href="#problem">The problem</a>
+      <a href="#how">How it works</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#price">Price</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <a class="btn btn-soft btn-sm" href="#join" data-cta="nav">Join the pilot list</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu" data-menu-btn>
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu" data-menu hidden>
+    <a href="#problem">The problem</a>
+    <a href="#how">How it works</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#price">Price</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- Hero -->
+<section class="hero" data-section="hero">
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="wrap hero-copy">
+    <span class="chip chip-split"><span class="chip-tag">Pilot stage</span>For Grade 1–3 teachers and school heads</span>
+    <h1 data-headline="A">Test all forty children <em>in the first week of school.</em></h1>
+    <h1 data-headline="B" hidden>Give your teachers back <em>a working week.</em></h1>
+    <p class="lede">ReadiLY listens to a child read aloud, scores the CRLA or Phil-IRI in about three minutes, and fills in the government form. No internet. No child's voice leaves the tablet.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary btn-lg" href="#join" data-cta="hero">Join the pilot list</a>
+      <a class="btn btn-soft btn-lg" href="#how">See how it works ↓</a>
+    </div>
+    <p class="micro">No payment, no commitment. A founder replies personally.</p>
+    <ul class="badges" aria-label="At a glance">
+      <li><span class="badge-ico ico-sage" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2Zm0 0A2 2 0 0 0 6 22h12"/></svg></span>CRLA &amp; Phil-IRI</li>
+      <li><span class="badge-ico ico-sky" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 2l20 20M8.5 16.5a5 5 0 0 1 7 0M5 12.9a10 10 0 0 1 5.2-2.8M19 12.9a10 10 0 0 0-2.3-1.6M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8A15 15 0 0 0 11 5.1M12 20h.01"/></svg></span>Works offline</li>
+      <li><span class="badge-ico ico-amber" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Audio stays on the tablet</li>
+    </ul>
+  </div>
+
+  <figure class="wrap stage" data-reveal>
+    <div class="stage-panel">
+      <!-- Floating card: class list -->
+      <div class="float float-left" aria-hidden="true">
+        <div class="float-head"><strong>Grade 2 · Class list</strong><span>Round 1 of 3</span></div>
+        <div class="row-item"><span>A.R.</span><span class="ok">Done</span></div>
+        <div class="row-item is-sel"><span>B.S.</span><span>Selected</span></div>
+        <div class="row-item"><span>C.D.</span><span class="muted">Not yet</span></div>
+      </div>
+
+      <!-- Tablet -->
+      <div class="tablet">
+        <div class="tablet-screen">
+          <div class="ts-top">
+            <span><strong>Learner A.R.</strong> Grade 2 · English · Passage set B</span>
+            <span class="pill-mute">Airplane mode · Scored on this tablet</span>
+          </div>
+          <div class="ts-body">
+            <div class="ts-col ts-result">
+              <div class="label">Result</div>
+              <div class="kpis">
+                <div class="kpi"><b>62</b><span>Words correct per minute</span></div>
+                <div class="kpi"><b>94%</b><span>Accuracy</span></div>
+              </div>
+              <div class="line-card"><span>Reading level</span><span class="lvl">Instructional</span></div>
+              <div class="flag-row"><span>3 flagged words</span><span class="pill-ink">Teacher review</span></div>
+            </div>
+            <div class="ts-col">
+              <div class="label">Passage · tap a flagged word to change it</div>
+              <p class="passage">Ana and her lola walk to the <mark class="m-self">sari-sari</mark> store. They buy bread, <mark class="m-skip">eggs</mark> and a bag of rice. On the way home, a <mark class="m-swap">jeepney</mark> stops to let them cross.</p>
+              <div class="legend">
+                <span class="m-skip">Skipped</span><span class="m-swap">Swapped</span><span class="m-add">Added</span><span class="m-self">Self-corrected</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating card: recording -->
+      <div class="float float-dark" aria-hidden="true">
+        <div class="rec"><span class="rec-dot"></span>Recording on this tablet · 0:42</div>
+        <div class="wave"><i style="--h:30%"></i><i style="--h:52%"></i><i style="--h:40%"></i><i style="--h:70%"></i><i style="--h:58%"></i><i style="--h:34%"></i><i style="--h:80%"></i><i style="--h:62%"></i><i style="--h:46%"></i><i style="--h:74%"></i><i style="--h:38%"></i><i style="--h:56%"></i><i style="--h:88%"></i><i style="--h:64%" class="dim"></i><i style="--h:42%" class="dim"></i><i style="--h:70%" class="dim"></i><i style="--h:50%" class="dim"></i></div>
+        <div class="rec-foot">Audio stays on the device</div>
+      </div>
+    </div>
+    <figcaption class="caption"><span aria-hidden="true"></span>Design preview with sample data.</figcaption>
+  </figure>
+</section>
+
+<!-- Proof strip (logo-row slot: facts, not logos) -->
+<section class="proof wrap" aria-label="Key facts" data-section="proof">
+  <p class="proof-label">Built around what you already do</p>
+  <ul class="proof-row">
+    <li data-reveal style="--d:0"><span class="proof-n">01</span><strong>The tests you already give</strong><span>CRLA and Phil-IRI</span></li>
+    <li data-reveal style="--d:1"><span class="proof-n">02</span><strong>Works in airplane mode</strong><span>No internet needed</span></li>
+    <li data-reveal style="--d:2"><span class="proof-n">03</span><strong>Audio never leaves the tablet</strong><span>Not for processing, not for backup</span></li>
+    <li data-reveal style="--d:3"><span class="proof-n">04</span><strong>Fills in the DepEd spreadsheet</strong><span class="confirm">CONFIRM</span></li>
+  </ul>
+</section>
+
+<!-- Problem: bento -->
+<section id="problem" class="section wrap" data-section="problem">
+  <div class="sec-head" data-reveal>
+    <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span>
+    <h2>The test is good. <em>The arithmetic defeats it.</em></h2>
+  </div>
+
+  <div class="bento">
+    <div class="tile tile-stat" data-reveal style="--d:0">
+      <h3>A class of</h3>
+      <div class="big">40</div>
+      <p>children, tested one at a time while the other thirty-nine wait.</p>
+    </div>
+    <div class="tile tile-tall" data-reveal style="--d:1">
+      <div class="story">
+        <p>A Grade 1 teacher has <strong>forty children</strong> and a legal duty to find out which of them cannot read.</p>
+        <p>She does it one child at a time, out loud, stopwatch in hand, while the other thirty-nine wait. <strong>Eight to fifteen minutes each. Three times a year.</strong> In Grade 3, twice over: once in English, once in Filipino.</p>
+        <p>That is <mark class="hl">about forty hours a year.</mark> A working week spent finding out, not helping.</p>
+        <p>Then every score is typed into a government spreadsheet and uploaded before a deadline. So the week gets rationed. Rounds get shortened. And the child who reads slowest takes longest, so he is the first one skipped.</p>
+      </div>
+    </div>
+    <div class="tile tile-stat" data-reveal style="--d:2">
+      <h3>Each child takes</h3>
+      <div class="big">8–15<small> min</small></div>
+      <p>out loud, stopwatch in hand.</p>
+    </div>
+    <div class="tile tile-stat" data-reveal style="--d:3">
+      <h3>Every year</h3>
+      <div class="big">3×<small> rounds</small></div>
+      <p>and twice over in Grade 3: English and Filipino.</p>
+    </div>
+    <div class="tile tile-accent" data-reveal style="--d:4">
+      <h3>Estimated total</h3>
+      <div class="big">About 40<small> hours a year</small></div>
+      <p>A working week spent finding out, not helping.</p>
+    </div>
+  </div>
+
+  <div class="mini-row">
+    <div class="mini dark" data-reveal style="--d:0">
+      <span class="mini-ico ico-sage" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg></span>
+      <p>When schools act on these results, it works. In three years, the Schools Division of Makati cut its share of Grade 1 children needing the most intensive help from <strong>55.17% to 1.64%</strong>. Finding children early works. The finding is what fails.</p>
+      <span class="confirm">CONFIRM source</span>
+    </div>
+    <div class="mini" data-reveal style="--d:1">
+      <span class="mini-ico ico-amber" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+      <p>Nationally, <strong>48.76%</strong> of Grade 1–3 children were not reading at grade level in 2024–2025 (DepEd).</p>
+    </div>
+    <div class="mini" data-reveal style="--d:2">
+      <span class="mini-ico ico-lilac" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+      <p>The child who reads slowest takes longest, so <strong>he is the first one skipped.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- Time comparison: dark curriculum panel -->
+<section class="section-wide" data-section="time" aria-labelledby="time-h">
+  <div class="panel-dark wrap-wide">
+    <div class="sec-head on-dark" data-reveal>
+      <span class="chip chip-dark">The arithmetic, side by side</span>
+      <h2 id="time-h">What one round costs a class of forty, <em>in two languages.</em></h2>
+    </div>
+    <div class="curric">
+      <div class="modules" data-accordion="time">
+        <div class="module" data-reveal style="--d:0">
+          <button type="button" class="module-btn" aria-expanded="true" aria-controls="tm-0" id="tmb-0">
+            <span><strong>One child, one language</strong><small>By hand today: 8–15 minutes</small></span>
+            <span class="pm" aria-hidden="true"></span>
+          </button>
+          <div class="module-body" id="tm-0" role="region" aria-labelledby="tmb-0">
+            <div class="module-inner">
+              <div class="cmp"><span>By hand today</span><div class="track"><i style="--w:1"></i></div><b>8–15 minutes</b></div>
+              <div class="cmp is-app"><span>With ReadiLY <em class="tag">Design target</em></span><div class="track"><i style="--w:.26"></i></div><b>About 3 minutes</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="module" data-reveal style="--d:1">
+          <button type="button" class="module-btn" aria-expanded="false" aria-controls="tm-1" id="tmb-1">
+            <span><strong>One round, 40 children, 2 languages</strong><small>By hand today: about 13 hours</small></span>
+            <span class="pm" aria-hidden="true"></span>
+          </button>
+          <div class="module-body" id="tm-1" role="region" aria-labelledby="tmb-1">
+            <div class="module-inner">
+              <div class="cmp"><span>By hand today</span><div class="track"><i style="--w:1"></i></div><b>About 13 hours</b></div>
+              <div class="cmp is-app"><span>With ReadiLY <em class="tag">Design target</em></span><div class="track"><i style="--w:.31"></i></div><b>About 4 hours</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="module" data-reveal style="--d:2">
+          <button type="button" class="module-btn" aria-expanded="false" aria-controls="tm-2" id="tmb-2">
+            <span><strong>Three rounds a year</strong><small>By hand today: about 40 hours</small></span>
+            <span class="pm" aria-hidden="true"></span>
+          </button>
+          <div class="module-body" id="tm-2" role="region" aria-labelledby="tmb-2">
+            <div class="module-inner">
+              <div class="cmp"><span>By hand today</span><div class="track"><i style="--w:1"></i></div><b>About 40 hours</b></div>
+              <div class="cmp is-app"><span>With ReadiLY <em class="tag">Design target</em></span><div class="track"><i style="--w:.3"></i></div><b>About 12 hours</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="about-card" data-reveal style="--d:1">
+        <span class="label">About these numbers</span>
+        <h3>From forty hours a year to about twelve.</h3>
+        <p>ReadiLY times are design targets. We will publish measured times after our classroom pilot.</p>
+        <div class="about-stats">
+          <div><b>3 min</b><span>per child</span></div>
+          <div><b>4 h</b><span>per round</span></div>
+          <div><b>12 h</b><span>per year</span></div>
+        </div>
+        <a class="btn btn-ink btn-block" href="#join" data-cta="time">Join the pilot list</a>
+        <p class="about-foot">No payment, no commitment.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- How it works: four tilted cards -->
+<section id="how" class="section wrap" data-section="how">
+  <div class="sec-head" data-reveal>
+    <span class="chip chip-sage">How it works</span>
+    <h2>Same test. Three minutes. <em>Form filled in.</em></h2>
+    <p class="sub">ReadiLY is not a new test. It is the one you already give.</p>
+  </div>
+
+  <ol class="steps">
+    <li class="step" data-reveal style="--d:0;--r:-2.5deg">
+      <span class="step-n">01</span>
+      <h3>Pick a child and a passage.</h3>
+      <p>Choose the child and a passage matched to their grade. Four matched sets rotate through the year, so no child reads the same story twice.</p>
+      <div class="step-vis" aria-hidden="true">
+        <div class="sets"><span>Set A</span><span class="on">Set B</span><span>Set C</span><span>Set D</span></div>
+        <div class="row-item is-sel"><span>B.S.</span><span>Selected</span></div>
+      </div>
+    </li>
+    <li class="step" data-reveal style="--d:1;--r:1.5deg">
+      <span class="step-n">02</span>
+      <h3>The child reads aloud.</h3>
+      <p>The tablet records on the device and compares what it hears with the text. A one-minute warm-up read, recorded but never scored, helps shy children settle.</p>
+      <div class="step-vis" aria-hidden="true">
+        <div class="wave wave-light"><i style="--h:30%"></i><i style="--h:52%"></i><i style="--h:40%"></i><i style="--h:70%"></i><i style="--h:58%"></i><i style="--h:34%"></i><i style="--h:80%"></i><i style="--h:62%"></i><i style="--h:46%"></i><i style="--h:74%" class="dim"></i><i style="--h:38%" class="dim"></i><i style="--h:56%" class="dim"></i></div>
+        <div class="rec rec-light"><span class="rec-dot"></span>On this tablet · 0:42</div>
+      </div>
+    </li>
+    <li class="step" data-reveal style="--d:2;--r:-1.5deg">
+      <span class="step-n">03</span>
+      <h3>See the result in about thirty seconds.</h3>
+      <p>Words correct per minute, accuracy, and the official level: Independent, Instructional or Frustration. Every mistake is labelled skipped, swapped, added or self-corrected.</p>
+      <div class="step-vis" aria-hidden="true">
+        <div class="kpis"><div class="kpi"><b>58</b><span>WCPM</span></div><div class="kpi"><b>91%</b><span>Accuracy</span></div></div>
+        <div class="line-card"><span>Level</span><span class="lvl">Instructional</span></div>
+      </div>
+    </li>
+    <li class="step" data-reveal style="--d:3;--r:2.5deg">
+      <span class="step-n">04</span>
+      <h3>Check, correct, export.</h3>
+      <p>Tap any flagged word to change the judgement. The score recalculates. Then export the DepEd spreadsheet, already filled in. You still upload it yourself.</p>
+      <div class="step-vis" aria-hidden="true">
+        <div class="word">“jeepney” <small>Heard: “jeep”</small></div>
+        <div class="export">Export DepEd spreadsheet</div>
+      </div>
+    </li>
+  </ol>
+  <p class="caption"><span aria-hidden="true"></span>Design preview with sample data.</p>
+</section>
+
+<!-- Benefits: stacked cards -->
+<section class="section wrap" data-section="benefits" aria-labelledby="ben-h">
+  <div class="sec-head" data-reveal>
+    <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9Z"/></svg></span>
+    <h2 id="ben-h">What changes <em>for your teachers.</em></h2>
+  </div>
+  <div class="stack">
+    <article class="stack-card c-green" style="--i:0">
+      <div>
+        <span class="stack-n">01</span>
+        <h3>Every child, not a sample.</h3>
+        <p>Forty children take about two hours in one language. The child who reads slowest gets the same turn as the fastest, in week one.</p>
+      </div>
+      <div class="dots" aria-hidden="true"></div>
+    </article>
+    <article class="stack-card c-ink" style="--i:1">
+      <div>
+        <span class="stack-n">02</span>
+        <h3>The government's form, filled in.</h3>
+        <p>Nothing retyped. ReadiLY uses DepEd's own formula for words correct per minute and accuracy, and exports the spreadsheet the national portal accepts.</p>
+        <span class="confirm">CONFIRM</span>
+      </div>
+      <div class="sheet" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </article>
+    <article class="stack-card c-sky" style="--i:2">
+      <div>
+        <span class="stack-n">03</span>
+        <h3>Works with no internet.</h3>
+        <p>Recording, scoring, the class dashboard and the export all work in airplane mode. When a connection appears, only scores sync. Never audio.</p>
+      </div>
+      <div class="big-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2Z"/></svg></div>
+    </article>
+    <article class="stack-card c-amber" style="--i:3">
+      <div>
+        <span class="stack-n">04</span>
+        <h3>You can always overrule it.</h3>
+        <p>Every flagged word is a tappable item. Change any judgement and the score recalculates. The record saves as teacher-adjusted.</p>
+      </div>
+      <div class="overrule" aria-hidden="true"><span class="pill-ink">Mark correct</span><span class="pill-line">Keep as swapped</span></div>
+    </article>
+    <article class="stack-card c-paper" style="--i:4">
+      <div>
+        <span class="stack-n">05</span>
+        <h3>Made for Filipino classrooms.</h3>
+        <p>Common accent substitutions, such as p for f, b for v and t for th, count as correct by default, as DepEd's rules require. Passages are original and set where children live: the sari-sari store, the jeepney, the fiesta.</p>
+      </div>
+      <div class="subs" aria-hidden="true"><span>p → f</span><span>b → v</span><span>t → th</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- Strict scoring: dark testimonial-style panel with a two-slide carousel -->
+<section class="section-wide" data-section="strict" aria-labelledby="strict-h">
+  <div class="panel-dark wrap-wide">
+    <div class="sec-head on-dark" data-reveal>
+      <span class="chip chip-dark">Why it is stricter</span>
+      <h2 id="strict-h">A reading test should not <em>flatter a struggling reader.</em></h2>
+    </div>
+    <div class="strict" data-reveal>
+      <div class="strict-copy">
+        <p>Most modern speech software guesses what you meant and tidies up the transcript. That helps with dictation. For a reading test it is the wrong thing to do: a child who stumbles, skips and misreads can come out sounding fine. The score rises for exactly the children the test exists to find.</p>
+        <p>ReadiLY uses a stricter kind of speech recogniser. It writes down only what it hears and cannot invent a word the child did not say.</p>
+      </div>
+      <div class="carousel" aria-roledescription="carousel" aria-label="Two tests we must pass before a classroom sees it" data-carousel>
+        <div class="slides">
+          <div class="slide is-on" role="group" aria-roledescription="slide" aria-label="1 of 2">
+            <div class="slide-top"><span>Strong reader</span><span class="pill-mute">Build target · Not a measured classroom result</span></div>
+            <div class="slide-big">97%<em>+</em></div>
+            <p>A word-for-word perfect reading must score 97% or higher, so a strong reader is never marked down.</p>
+          </div>
+          <div class="slide" role="group" aria-roledescription="slide" aria-label="2 of 2" aria-hidden="true">
+            <div class="slide-top"><span>Struggling reader</span><span class="pill-mute">Build target · Not a measured classroom result</span></div>
+            <div class="slide-big">8<em> / 10</em></div>
+            <p>A passage with ten words left unread must have at least eight caught as omissions, so a weak reader is never rescued.</p>
+          </div>
+        </div>
+        <div class="car-nav">
+          <button type="button" class="round-btn" data-prev aria-label="Previous test">←</button>
+          <span class="car-count" data-count aria-live="polite">1/2</span>
+          <button type="button" class="round-btn" data-next aria-label="Next test">→</button>
+        </div>
+      </div>
+    </div>
+    <p class="strict-foot" data-reveal>These are build targets, not results. Two trained human examiners scoring the same child disagree about one time in five. Matching a careful human is our bar.</p>
+  </div>
+</section>
+
+<!-- Privacy: stat-tile band -->
+<section id="privacy" class="section wrap" data-section="privacy">
+  <div class="sec-head" data-reveal>
+    <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></span>
+    <h2>No child's voice <em>leaves the tablet.</em></h2>
+    <p class="sub">Under Philippine law, a child's voice is biometric personal information and their score is sensitive personal information. We built the app around that.</p>
+  </div>
+  <div class="tiles4">
+    <div class="ptile" data-reveal style="--d:0">
+      <span class="badge-ico ico-sage" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5"/></svg></span>
+      <h3>Audio stays on the device.</h3>
+      <p>Not for processing, not for backup.</p>
+    </div>
+    <div class="ptile" data-reveal style="--d:1">
+      <span class="badge-ico ico-amber" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <h3>The microphone stays off until consent is confirmed.</h3>
+      <p>The teacher must confirm a signed parental consent form is on file. Families who decline get a non-digital alternative.</p>
+    </div>
+    <div class="ptile" data-reveal style="--d:2">
+      <span class="badge-ico ico-lilac" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-6 7 6v11M10 21v-6h4v6"/></svg></span>
+      <h3>The school owns the data.</h3>
+      <p>We are only the processor, under a written agreement.</p>
+    </div>
+    <div class="ptile" data-reveal style="--d:3">
+      <span class="badge-ico ico-sky" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 1 0 6 16.2M12 12v9M9 18l3 3 3-3"/></svg></span>
+      <h3>Scores sync without names.</h3>
+      <p>The cloud sees initials and the learner reference number, never a full name. A school can use the app with no account at all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Honest status -->
+<section class="section wrap" data-section="status" aria-labelledby="status-h">
+  <div class="sec-head" data-reveal>
+    <span class="chip chip-amber">Honest status</span>
+    <h2 id="status-h">Where we are, <em>plainly.</em></h2>
+    <p class="sub">ReadiLY is in pilot preparation. <span class="confirm">CONFIRM current status: designed only, or demo built</span></p>
+  </div>
+  <div class="status-grid">
+    <div class="scard" data-reveal style="--d:0">
+      <h3 class="k-green">What exists</h3>
+      <ul class="checks">
+        <li>Thirteen designed screens</li>
+        <li>A complete engineering specification</li>
+        <li>A speech engine chosen and checked to fit a school tablet</li>
+      </ul>
+      <span class="confirm">UPDATE if a working demo now exists</span>
+    </div>
+    <div class="scard" data-reveal style="--d:1">
+      <h3 class="k-red">What does not exist yet</h3>
+      <p>A classroom result. We have not tested with children, so we will not quote an accuracy figure until we have.</p>
+    </div>
+    <div class="scard" data-reveal style="--d:2">
+      <h3>At launch</h3>
+      <p>Automatic scoring is English only. Filipino passages can be recorded and reviewed by the teacher. Automatic Filipino scoring is coming later.</p>
+    </div>
+  </div>
+  <div class="not-do" data-reveal>
+    <h3>What ReadiLY does not do</h3>
+    <p>It does not measure whether a child understood what they read.</p>
+    <p>It does not predict who will struggle later.</p>
+    <p>It does not upload to the DepEd portal for you.</p>
+  </div>
+
+  <div class="targets" data-reveal>
+    <div class="targets-head">
+      <h3>Our pilot has four measurements that can fail</h3>
+      <span class="pill-mute">Pilot targets · Not results</span>
+    </div>
+    <div class="tiles4">
+      <div class="ttile"><span>Time to assess one child, including setup</span><b>Under 4 minutes</b></div>
+      <div class="ttile"><span>Share of a class assessed within one week</span><b>100%</b></div>
+      <div class="ttile"><span>How often a teacher corrects the app</span><b>Under 10% of scored words</b></div>
+      <div class="ttile"><span>Whether teachers trust it</span><b>Post-pilot survey</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- Price: three cards -->
+<section id="price" class="section wrap" data-section="price">
+  <div class="sec-head" data-reveal>
+    <span class="chip chip-amber">Price</span>
+    <h2>What it costs, <em>and how a school buys it.</em></h2>
+  </div>
+  <div class="prices">
+    <div class="price" data-reveal style="--d:0">
+      <span class="price-k">Quezon City public schools</span>
+      <div class="price-big">Free</div>
+      <span class="price-s">Four-week pilot, planned</span>
+      <ul class="checks">
+        <li>Subject to a DepEd research permit</li>
+        <li>Grade 1–3 classes</li>
+        <li>Join the list to be considered</li>
+      </ul>
+      <a class="btn btn-soft btn-block" href="#join" data-cta="price-public">Join the pilot list</a>
+    </div>
+    <div class="price price-feature" data-reveal style="--d:1">
+      <div class="price-flag">For private schools</div>
+      <div class="price-head">
+        <span class="price-k">Per school, per year</span>
+        <span class="confirm">CONFIRM final pilot-stage pricing</span>
+      </div>
+      <div class="price-big">₱150</div>
+      <span class="price-s">per Grade 1–3 child per year</span>
+      <div class="price-min"><span>Minimum</span><strong>₱25,000 per school</strong></div>
+      <div class="worked">
+        <span class="label">Worked example</span>
+        <p>A school with 200 Grade 1–3 children pays <strong>₱30,000 a year</strong>.</p>
+        <p class="muted">For a school with nine Grade 1–3 teachers, we estimate about 250 teacher-hours a year returned to teaching.</p>
+      </div>
+      <a class="btn btn-primary btn-block" href="#join" data-cta="price">Join the pilot list</a>
+    </div>
+    <div class="price" data-reveal style="--d:2">
+      <span class="price-k">What buying looks like</span>
+      <ol class="buy">
+        <li><span>1</span>We send a quote. You buy it.</li>
+        <li><span>2</span>We visit for a one-hour session that trains the teachers who will train the rest.</li>
+        <li><span>3</span>We load class lists from a spreadsheet.</li>
+        <li><span>4</span>Your first class is assessed that same week.</li>
+        <li><span>5</span>At term's end, the completed form is exported in time for the deadline.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rule" data-reveal>
+    <div class="rule-head"><h3>The buying rule</h3><span class="confirm">CONFIRM legal review</span></div>
+    <p>Under the 2025 procurement law, purchases up to ₱200,000 can be made by direct acquisition: no bidding, no committee. Our price sits below that line. We send a quote with the legal justification attached, so your finance office and your auditor have what they need.</p>
+  </div>
+</section>
+
+<!-- Continuity & team: bio bento -->
+<section class="section wrap" data-section="continuity" aria-labelledby="team-h">
+  <div class="sec-head" data-reveal>
+    <span class="chip chip-sage">Continuity</span>
+    <h2 id="team-h">Ask us what happens <em>if we stop.</em></h2>
+    <p class="sub">We are two students. You should ask. Three promises you can hold us to:</p>
+  </div>
+  <div class="team">
+    <div class="team-card" data-reveal style="--d:0">
+      <div class="founders">
+        <div class="founder"><span class="avatar a-green" aria-hidden="true">YN</span><div><strong>Yhasmen Nogales</strong><span>AI</span></div></div>
+        <div class="founder"><span class="avatar a-ink" aria-hidden="true">CA</span><div><strong>Caryl Joy Atienza</strong><span>App and product</span></div></div>
+      </div>
+      <p>We are Yhasmen Nogales (AI) and Caryl Joy Atienza (app and product), undergraduates at the Polytechnic University of the Philippines, graduating in 2027. We do not plan to shelve this at graduation. Between us we have placed in three national competitions.</p>
+      <span class="confirm">CONFIRM photos and bios</span>
+      <div class="team-foot"><b>2027</b><span>graduating, and staying on it</span></div>
+    </div>
+    <ol class="promises">
+      <li class="promise" data-reveal style="--d:1"><span class="pnum">1</span><h3>The data is yours.</h3><p>It exports to a plain spreadsheet on demand. Nothing is trapped in our system.</p></li>
+      <li class="promise" data-reveal style="--d:2"><span class="pnum">2</span><h3>The app keeps working if we stop.</h3><p>Scoring happens on the tablet and needs no server of ours, so it runs offline for your whole paid term.</p></li>
+      <li class="promise promise-accent" data-reveal style="--d:3"><span class="pnum">3</span><h3>Support is next-business-day,</h3><p>by phone and Viber, during the school year.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section wrap faq-wrap" data-section="faq">
+  <div class="sec-head" data-reveal>
+    <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg></span>
+    <h2>Questions, <em>answered.</em></h2>
+  </div>
+  <div class="faq" data-faq></div>
+  <p class="faq-foot">Not a Grade 1–3 teacher or school head? <a href="mailto:team@readily.example" data-track="contact_click">Contact the team</a></p>
+</section>
+
+<!-- Join: dark kit panel with form -->
+<section id="join" class="section-wide" data-section="join" aria-labelledby="join-h">
+  <div class="panel-dark wrap-wide join">
+    <div class="sec-head on-dark" data-reveal>
+      <span class="chip chip-dark">Pilot list</span>
+      <h2 id="join-h">Be one of the <em>first schools.</em></h2>
+    </div>
+    <div class="join-grid">
+      <div class="join-copy" data-reveal style="--d:0">
+        <span class="chip chip-glass">Seven fields · about a minute</span>
+        <p class="join-lede">We are choosing pilot schools now. Tell us about your school and we will contact you personally.</p>
+        <ul class="checks on-dark">
+          <li>No payment, no commitment</li>
+          <li>A founder replies personally</li>
+          <li>We only ask about you and your school. Never about a child.</li>
+        </ul>
+        <ol class="next">
+          <li class="next-label">What happens next</li>
+          <li><span>1</span>You join the list. A founder contacts you personally.</li>
+          <li><span>2</span>If your school is chosen, we send a quote, or plan a free pilot for Quezon City public schools.</li>
+          <li><span>3</span>We visit for a one-hour session and load your class lists.</li>
+        </ol>
+      </div>
+      <div class="form-card" data-reveal style="--d:1">
+        <form id="pilot-form" novalidate aria-label="Join the pilot list" data-form>
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" autocomplete="name" aria-describedby="e-name">
+            <span class="err" id="e-name" hidden></span>
+          </div>
+          <div class="field">
+            <label for="f-role">Your role</label>
+            <select id="f-role" name="role" aria-describedby="e-role">
+              <option value="">Choose one</option>
+              <option>Grade 1–3 teacher</option>
+              <option>School head</option>
+              <option>ARAL coordinator</option>
+              <option>Other</option>
+            </select>
+            <span class="err" id="e-role" hidden></span>
+            <span class="note" data-role-other hidden>Thanks. We built this for Grade 1–3 teachers and school heads, so we may not be able to include you in the pilot. We will still send you updates if you tick the box.</span>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-school">School name</label>
+              <input id="f-school" name="school" autocomplete="organization" aria-describedby="e-school">
+              <span class="err" id="e-school" hidden></span>
+            </div>
+            <div class="field">
+              <label for="f-city">City or municipality</label>
+              <input id="f-city" name="city" autocomplete="address-level2" aria-describedby="e-city">
+              <span class="err" id="e-city" hidden></span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-count">About how many Grade 1–3 children? <span class="opt">(optional)</span></label>
+            <input id="f-count" name="count" type="number" inputmode="numeric" min="0">
+          </div>
+          <div class="field">
+            <label for="f-contact">Mobile number (Viber) or email</label>
+            <input id="f-contact" name="contact" autocomplete="email" aria-describedby="e-contact">
+            <span class="err" id="e-contact" hidden></span>
+          </div>
+          <div class="field">
+            <label class="consent" for="f-consent">
+              <input id="f-consent" name="consent" type="checkbox" aria-describedby="e-consent">
+              <span>I agree that ReadiLY may contact me about the pilot. <a href="#privacy-notice" data-track="privacy_notice_click">Privacy notice</a></span>
+            </label>
+            <span class="err" id="e-consent" hidden></span>
+          </div>
+          <button class="btn btn-primary btn-block btn-lg" type="submit">Join the pilot list</button>
+        </form>
+        <div class="success" data-success role="status" hidden>
+          <span class="success-ico" aria-hidden="true">✓</span>
+          <p>Thank you. A founder will contact you personally. In the meantime, forward this page to your principal.</p>
+          <button type="button" class="btn btn-soft" data-copy>Copy link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-dots" aria-hidden="true"></div>
+  <div class="wrap footer-grid">
+    <div class="f-brand">
+      <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span>Readi<span class="logo-ly">LY</span></a>
+      <p>CRLA and Phil-IRI, scored on a tablet, offline. Built by Team IKIYUH for Grade 1–3 classrooms.</p>
+    </div>
+    <nav class="f-col" aria-label="Site map">
+      <span>Site map</span>
+      <a href="#problem">The problem</a>
+      <a href="#how">How it works</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#price">Price</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <nav class="f-col" aria-label="Footer">
+      <span>Legal</span>
+      <a id="privacy-notice" href="#privacy-notice">Privacy notice</a>
+      <a href="mailto:team@readily.example" data-track="contact_click">Contact</a>
+    </nav>
+    <div class="f-cta">
+      <p>We are choosing pilot schools now.</p>
+      <a class="btn btn-soft btn-block" href="#join" data-cta="footer">Join the pilot list</a>
+      <span class="confirm">CONFIRM shared team contact address (not a personal Gmail)</span>
+    </div>
+  </div>
+  <div class="wrap footer-base">
+    <p><strong>ReadiLY · Team IKIYUH · Polytechnic University of the Philippines · Startup QC 2026</strong></p>
+    <p>ReadiLY is not a DepEd product and is not endorsed by the Department of Education. CRLA and Phil-IRI are DepEd assessments.</p>
+  </div>
+</footer>
+</body>
+</html>
