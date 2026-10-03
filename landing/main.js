@@ -82,16 +82,27 @@ document.querySelectorAll('[data-accordion]').forEach(group => {
   sync();
 });
 
-// ---------- Strict-scoring carousel ----------
+// ---------- Carousels (app screens, build targets) ----------
+const SCREEN_CAPTIONS = [
+  ['Class list', 'Pick Miguel and a passage matched to his grade. Four sets rotate so no child reads the same story twice.'],
+  ['Before recording', 'The microphone stays off until consent is confirmed, and a noise check runs first. Bea gets her warm-up read here.'],
+  ['Reading aloud', 'The tablet records on the device and compares what it hears with the text. Audio never leaves it.'],
+  ['The result', 'About thirty seconds later: words correct per minute, accuracy, the official level, and every mistake labelled.'],
+  ['Review and export', 'Tap a flagged word to change the call. Then export the DepEd spreadsheet, already filled in.']
+];
 document.querySelectorAll('[data-carousel]').forEach(car => {
-  const slides = [...car.querySelectorAll('.slide')];
+  const name = car.dataset.carousel;
+  const slides = [...car.querySelectorAll('.slide, .screen')];
   const count = car.querySelector('[data-count]');
+  const capTitle = car.querySelector('[data-cap-title]');
+  const capBody = car.querySelector('[data-cap-body]');
   let i = 0;
   const go = n => {
     i = (n + slides.length) % slides.length;
     slides.forEach((s, k) => { s.classList.toggle('is-on', k === i); s.setAttribute('aria-hidden', String(k !== i)); });
-    count.textContent = `${i + 1}/${slides.length}`;
-    track('target_slide', { slide: i + 1 });
+    if (count) count.textContent = `${i + 1}/${slides.length}`;
+    if (capTitle && SCREEN_CAPTIONS[i]) { capTitle.textContent = SCREEN_CAPTIONS[i][0]; capBody.textContent = SCREEN_CAPTIONS[i][1]; }
+    track('carousel_slide', { carousel: name, slide: i + 1 });
   };
   car.querySelector('[data-prev]').addEventListener('click', () => go(i - 1));
   car.querySelector('[data-next]').addEventListener('click', () => go(i + 1));
@@ -132,8 +143,8 @@ faqItems.forEach((item, k) => {
   });
 });
 
-// ---------- Benefits: 40 dots ----------
-const dots = document.querySelector('.dots');
+// ---------- Benefits: 40 dots, the last one is Miguel ----------
+const dots = document.querySelector('.dot-grid');
 if (dots) dots.innerHTML = '<i></i>'.repeat(40);
 
 // ---------- Pilot-list form ----------
