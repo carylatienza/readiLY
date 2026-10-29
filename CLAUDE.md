@@ -39,6 +39,15 @@ Useful raw CLI: `openspec status --change "<name>" --json`, `openspec list --jso
 
 - `agent-browser` — CLI-driven browser automation (navigate, click, fill, screenshot, network mocking) for manual or scripted web testing
 - `e2e-test` — full end-to-end test pass: parallel research agents map user journeys + DB schema + likely bugs, then agent-browser drives every journey with screenshots and DB validation. Requires Linux/WSL/macOS (not native Windows) and an existing browser-accessible frontend — not usable until there's an app to test
+- `verify-landing` — "did I break it?" check for the static `landing/` page (serve, no JS errors, interactions, 360/390/1440px, reduced motion, weight, honesty greps)
+- `create-github-issue` → `create-github-pull-request` — standard change flow via the `gh` CLI; the PR skill runs both reviewer agents in fresh context
+- `adversarial-code-review` — scored /100 review rubric used by `code-reviewer`
+- `attach-screenshot` — PR-ready before/after screenshots of `landing/` changes
+
+## Agents (`.claude/agents/`)
+
+- `code-reviewer` — adversarial, scored review of a diff or PR (advisory, read-only)
+- `compliance-reviewer` — strict pass on ReadiLY's honesty rules: no testimonials or invented results, illustrative learners labelled, CONFIRM markers kept, privacy claims the product can keep
 
 ## Reference templates (`project-skills/`)
 
