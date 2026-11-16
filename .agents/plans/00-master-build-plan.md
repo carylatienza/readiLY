@@ -20,7 +20,7 @@ Verified in the repo and on this machine on 2026-11-16:
 | Business plan | `docs/startup qc/ReadiLY_Business_Plan_v3.md` on `main`. Later revisions V5–V9 exist only on branch `docs/business-plan-v4-polish` (unmerged). |
 | Design | 13 app mockups, embedded as base64 PNGs at the bottom of `docs/startup qc/ReadiLY In-Depth Details.md` (`[image1]`…`[image13]`). The landing page's `:root` block in `landing/styles.css` holds the "Educore" colour tokens, including the four miscue colours. |
 | Research | 7 reports in `docs/research/`. |
-| Local toolchain | Python 3.11/3.12 present. **No JDK, no Gradle, no Android SDK, no `adb` found** (checked `PATH`, `ANDROID_HOME`, the default SDK folder, `Program Files`). |
+| Local toolchain | Python 3.11/3.12 present. **No JDK, no Gradle, no Android SDK, no `adb` found** (checked `PATH`, `ANDROID_HOME`, the default SDK folder, `Program Files`). *Update, phase 0 (PR #5):* JDK 17, the Android SDK command-line tools, `adb` and an API 28 emulator are now installed in user space; `/init-project` records how. |
 | Git | Working branch `landing-page` is already merged; `main` is at the PR #3 merge. PR #2 (`docs/business-plan-v2-updates`) is still open from July and contains `docs/PRD.md` and `docs/BUILD.md`, both of which predate the scope changes in §4. |
 | OpenSpec | `openspec/specs/` and `openspec/changes/` empty; `openspec/config.yaml` `context:` unfilled. |
 
@@ -69,7 +69,8 @@ Do not reopen these. They were decided by the founders and are relied on by the 
 - **Verification.** A phase is done when its gate in §6 passes and you have run it, not when the code compiles. If a gate needs a device or emulator and none is available, say so in the PR and leave the box unticked.
 - **Commits and PRs.** Use `/commit` and the `create-github-pull-request` skill (it runs `code-reviewer` and `compliance-reviewer`). Anything that touches `landing/`, pitch or business docs, or a user-facing number must go through `compliance-reviewer`.
 - **Asking.** Decisions marked **OPEN** in §10 belong to the founders. Use the stated default so work is not blocked, and flag in the PR that a default was used.
-- **Not applicable here.** `/init-project` (written for Python/FastAPI), `agent-browser`, `e2e-test` and `verify-landing` do not apply to the Android app. `verify-landing` still applies to any `landing/` change.
+- **Setting up a machine.** `/init-project` installs the Android toolchain and the emulator (rewritten in phase 0).
+- **Not applicable here.** `agent-browser`, `e2e-test` and `verify-landing` do not apply to the Android app. `verify-landing` still applies to any `landing/` change.
 
 ---
 
@@ -254,7 +255,7 @@ Defaults are what the agent will do if no answer arrives.
 | # | Question | Default |
 |---|---|---|
 | 1 | What is the immediate goal? | **Answered 2026-11-16: a working demo.** Build phases 0–5 as fast as is safe, then 6–7. Phases 8–9 wait for a founder's request. Still unknown: whether a demo date exists, and what was shown at Pitch Day. |
-| 2 | What is the test target? | **Answered 2026-11-16: the founder's own Android phone or tablet over USB.** Install JDK 17 and the command-line SDK on this PC. In phase 0, ask the founder to enable USB debugging, then record the device model, Android version and RAM in the PR. If it is newer or larger than a 4 GB school tablet, say so next to every memory or speed figure. |
+| 2 | What is the test target? | **Updated 2026-11-16: an emulator for now.** No phone is available yet, so the test target is the API 28 tablet emulator `readily_api28` on the development PC (2 GB guest RAM, host microphone). Emulator memory and speed figures are never reported as device figures, and phase 5's memory gate still needs a real device. When a phone is available, the original answer applies: **the founder's own Android phone or tablet over USB.** Install JDK 17 and the command-line SDK on this PC. In phase 0, ask the founder to enable USB debugging, then record the device model, Android version and RAM in the PR. If it is newer or larger than a 4 GB school tablet, say so next to every memory or speed figure. |
 | 3 | Who records the spike audio? | **Answered 2026-11-16: the founders will record.** At the start of phase 1, give them one short English passage and a numbered script of about ten clips (what to read and how to misread it), accept whatever format their phone produces, and convert to 16 kHz mono WAV yourself. Keep the clips out of git. |
 | 4 | What does export aim for? | **Answered 2026-11-16: a plain class record.** CSV plus a class sheet with the Phil-IRI oral-reading columns, comprehension left blank, no claim that it is the DepEd form. Matching the official Excel templates is a later change, once a founder adds them to the repo. The landing page's "fills in the DepEd spreadsheet" claim keeps its `CONFIRM` marker. |
 | 5 | Is cloud sync wanted before the first pilot? | Deferred. |
