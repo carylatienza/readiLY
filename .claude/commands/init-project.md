@@ -55,6 +55,17 @@ adb shell cat /proc/meminfo | head -1
 
 Record the model, Android version and RAM. If the device has more than 4 GB of RAM, say so next to every memory or speed figure, since school tablets are smaller.
 
+**No phone yet? Use an emulator** (Android 9 / API 28, the app's minimum, on a tablet-sized screen):
+
+```bash
+android sdk install "emulator" "system-images;android-28;default;x86_64"
+emulator -accel-check          # needs WHPX or AEHD hardware acceleration
+avdmanager create avd -n readily_api28 -k "system-images;android-28;default;x86_64" -d pixel_c
+emulator -avd readily_api28 -no-snapshot-save
+```
+
+In `~/.android/avd/readily_api28.avd/config.ini` set `hw.audioInput=yes` (the emulator then uses this PC's microphone) and keep `hw.ramSize` at or below half the host's RAM. Emulator memory and speed figures are not device figures; never report them as such.
+
 ## 5. Build and test (once the Gradle project exists)
 
 ```bash
