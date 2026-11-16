@@ -7,7 +7,7 @@
 
 ## Phase order
 
-One branch and one PR per phase, named `feat/android-<nn>-<slug>`. Execute a numbered plan with `/execute .agents/plans/<file>`, applying the master plan's overrides as you go.
+One branch and one PR per phase, named `feat/android-<nn>-<slug>`. Execute a numbered plan with `/execute .agents/plans/<file>`, applying the master plan's overrides as you go. **Phase numbers are not plan numbers:** phase 2 executes plan `01`, phase 3 plans `02` and `03`, and so on. Inside plans `01`–`07`, "phase" means a step within that plan.
 
 | Phase | Plan | What it delivers | Notes |
 |---|---|---|---|

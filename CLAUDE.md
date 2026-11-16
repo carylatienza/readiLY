@@ -10,7 +10,9 @@ readiLY is a native Android app (offline oral-reading assessment for Grade 1–3
 - **Hard constraints, in one line each:** works fully offline; no seq2seq recogniser (no Whisper/Moonshine); audio never leaves the device; cloud identity is initials + LRN only; English-only automatic scoring; original passages only; no predictive claims. Details in §2 of the master plan.
 - `landing/` is a separate static page (HTML/CSS/vanilla JS); it is not part of the app.
 
-Android commands (from the repo root, once phase 2 creates the Gradle project): `gradlew.bat assembleDebug`, `gradlew.bat testDebugUnitTest`, `gradlew.bat ktlintCheck lintDebug`, `adb devices`. Toolchain: JDK 17 (`JAVA_HOME`) and the Android SDK command-line tools (`ANDROID_HOME`).
+Android commands (PowerShell, from the repo root, once phase 2 creates the Gradle project): `.\gradlew.bat assembleDebug`, `.\gradlew.bat testDebugUnitTest`, `.\gradlew.bat ktlintCheck lintDebug`, `adb devices`. In Git Bash use `./gradlew.bat`. Toolchain: JDK 17 (`JAVA_HOME`) and the Android SDK (`ANDROID_HOME`); `/init-project` sets them up. Test target for now: the API 28 emulator `readily_api28` (no phone yet).
+
+Phase numbers are not plan numbers: phase 2 executes plan `01`, phase 3 plans `02`–`03`, and so on (table in `.agents/plans/index.md`).
 
 Business/product context lives in `docs/startup qc/`:
 - `ReadiLY_Business Plan V1.md`, `ReadiLY_Lean_Canvas.md`, `ReadiLY_Pitch_Deck.md` — product concept, market, positioning

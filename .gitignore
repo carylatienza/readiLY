@@ -1,2 +1,5 @@
 # Local agent worktrees
 .claude/worktrees/
+
+# Phase 1 recognition spike: model, recordings, venv (never commit audio)
+spike/

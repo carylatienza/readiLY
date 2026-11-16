@@ -4,77 +4,127 @@ description: Set up the Android toolchain on a new Windows machine and check the
 
 # Initialize Project
 
-Set up a machine to build and run the readiLY Android app. The stack and constraints are in `.agents/plans/00-master-build-plan.md` §2; read it if you have not.
+Set up a Windows machine to build and run the readiLY Android app. The stack and constraints are in `.agents/plans/00-master-build-plan.md` §2; read it if you have not.
 
-Install everything in user space (no admin rights needed). Look up current versions instead of copying the ones below; they are examples from 2026-11-16.
+- **Shell:** every command below is **PowerShell** (Windows PowerShell 5.1 or later). Use `curl.exe`, not `curl`, which is an alias in 5.1.
+- **No admin rights:** install everything under `%LOCALAPPDATA%`. If any step needs admin rights or a reboot, stop and ask the user.
+- **Versions:** look up the current ones; the examples below are from 2026-11-16.
 
 ## 1. Check what is already there
 
-```bash
-java -version; echo "JAVA_HOME=$JAVA_HOME ANDROID_HOME=$ANDROID_HOME"; adb version
+```powershell
+java -version
+"JAVA_HOME=$env:JAVA_HOME"; "ANDROID_HOME=$env:ANDROID_HOME"
+adb version
+android --sdk="$env:ANDROID_HOME" sdk list
 ```
 
-If `java -version` reports 17 and `adb` runs, skip to step 4.
+Skip a step only if everything it installs is already listed. Java must report 17. A different JDK can stay installed; install 17 alongside it and point `JAVA_HOME` at 17.
 
 ## 2. JDK 17
 
-Find the current Temurin 17 build and its SHA-256:
-
-```bash
-curl -s "https://api.adoptium.net/v3/assets/latest/17/hotspot?architecture=x64&image_type=jdk&os=windows&vendor=eclipse"
+```powershell
+$api = "https://api.adoptium.net/v3/assets/latest/17/hotspot?architecture=x64&image_type=jdk&os=windows&vendor=eclipse"
+$pkg = (Invoke-RestMethod $api)[0].binary.package      # .link, .checksum (SHA-256)
+$zip = "$env:TEMP\jdk17.zip"
+curl.exe -sSL -o $zip $pkg.link
+if ((Get-FileHash $zip -Algorithm SHA256).Hash -ne $pkg.checksum.ToUpper()) { throw "JDK checksum mismatch" }
+Expand-Archive $zip "$env:LOCALAPPDATA\Programs" -Force   # creates e.g. jdk-17.0.21+9
 ```
 
-Download the zip, verify the checksum with `sha256sum -c`, unpack it to `%LOCALAPPDATA%\Programs\`, and set the user variable `JAVA_HOME` to the unpacked folder (for example `jdk-17.0.21+9`). Add `%JAVA_HOME%\bin` to the user `Path`.
+## 3. Android SDK command-line tools
 
-## 3. Android SDK
+The current Windows zip and its **SHA-1** are in `https://dl.google.com/android/repository/repository2-3.xml` under `cmdline-tools;latest` (file name `commandlinetools-win-<build>_latest.zip`).
 
-1. Find the current `cmdline-tools;latest` Windows zip and its SHA-1 in `https://dl.google.com/android/repository/repository2-3.xml`.
-2. Unpack it so the tools sit at `%LOCALAPPDATA%\Android\Sdk\cmdline-tools\latest\bin`.
-3. Set the user variable `ANDROID_HOME` to `%LOCALAPPDATA%\Android\Sdk`. Add `cmdline-tools\latest\bin` and `platform-tools` under it to the user `Path`.
-4. **Stop and ask the user before accepting the Android SDK licences.** Accepting them is the user's agreement, not yours. Once they agree:
-
-```bash
-sdkmanager --licenses
-sdkmanager "platform-tools" "platforms;android-<compileSdk>" "build-tools;<version AGP needs>"
+```powershell
+$sdk = "$env:LOCALAPPDATA\Android\Sdk"
+curl.exe -sSL -o "$env:TEMP\cmdline.zip" "https://dl.google.com/android/repository/commandlinetools-win-<build>_latest.zip"
+(Get-FileHash "$env:TEMP\cmdline.zip" -Algorithm SHA1).Hash   # compare with the XML
+Expand-Archive "$env:TEMP\cmdline.zip" "$sdk\cmdline-tools" -Force
+Rename-Item "$sdk\cmdline-tools\cmdline-tools" latest         # tools must sit in cmdline-tools\latest\bin
 ```
 
-`compileSdk` and the build-tools version come from `app/build.gradle.kts` and the AGP release notes once the project exists.
+## 4. Environment variables
 
-Open a new terminal afterwards so the new variables load.
+Set them for the user only. **Never use `setx` on `Path`**: it truncates at 1024 characters and merges the machine Path into the user Path.
 
-## 4. Test device
+```powershell
+$jdk = (Get-ChildItem "$env:LOCALAPPDATA\Programs" -Directory -Filter "jdk-17*" | Select-Object -Last 1).FullName
+[Environment]::SetEnvironmentVariable('JAVA_HOME', $jdk, 'User')
+[Environment]::SetEnvironmentVariable('ANDROID_HOME', $sdk, 'User')
+$p = [Environment]::GetEnvironmentVariable('Path', 'User')       # the user Path only
+$add = "$jdk\bin", "$sdk\cmdline-tools\latest\bin", "$sdk\platform-tools", "$sdk\emulator" |
+  Where-Object { $p -notlike "*$_*" }
+if ($add) { [Environment]::SetEnvironmentVariable('Path', ($p.TrimEnd(';') + ';' + ($add -join ';')), 'User') }
+```
 
-Ask the user to enable Developer options and USB debugging on their Android phone or tablet, plug it in, and accept the "Allow USB debugging" prompt. Then:
+Open a new terminal so the variables load.
 
-```bash
+## 5. SDK packages
+
+`sdkmanager` is deprecated from cmdline-tools 23.0; use the `android sdk` CLI that ships beside it.
+
+**Stop and ask the user before installing packages.** Installing them accepts Google's Android SDK licence on the user's behalf.
+
+```powershell
+android --sdk="$env:ANDROID_HOME" sdk install "platform-tools" "platforms;android-<compileSdk>" "build-tools;<version AGP needs>"
+```
+
+`compileSdk` and the build-tools version come from `app/build.gradle.kts` and the AGP release notes once the project exists. On 2026-11-16 they were `android-36` and `36.1.0`.
+
+## 6. Test target
+
+### A physical device (preferred)
+
+Ask the user to enable Developer options and USB debugging, plug the device in, and accept the "Allow USB debugging" prompt.
+
+```powershell
 adb devices -l
 adb shell getprop ro.product.model
 adb shell getprop ro.build.version.release
-adb shell cat /proc/meminfo | head -1
+adb shell "head -1 /proc/meminfo"
 ```
 
 Record the model, Android version and RAM. If the device has more than 4 GB of RAM, say so next to every memory or speed figure, since school tablets are smaller.
 
-**No phone yet? Use an emulator** (Android 9 / API 28, the app's minimum, on a tablet-sized screen):
+### An emulator (no phone yet)
 
-```bash
-android sdk install "emulator" "system-images;android-28;default;x86_64"
-emulator -accel-check          # needs WHPX or AEHD hardware acceleration
-avdmanager create avd -n readily_api28 -k "system-images;android-28;default;x86_64" -d pixel_c
-emulator -avd readily_api28 -no-snapshot-save
+This uses Android 9 (API 28), the app's minimum, on a tablet-sized screen.
+
+```powershell
+android --sdk="$env:ANDROID_HOME" sdk install "emulator" "system-images;android-28;default;x86_64"
+emulator -accel-check
 ```
 
-In `~/.android/avd/readily_api28.avd/config.ini` set `hw.audioInput=yes` (the emulator then uses this PC's microphone) and keep `hw.ramSize` at or below half the host's RAM. Emulator memory and speed figures are not device figures; never report them as such.
+`-accel-check` must report WHPX or AEHD as usable. If it does not, the "Windows Hypervisor Platform" feature needs turning on, which takes admin rights and a reboot, so ask the user. Without acceleration the emulator is too slow to use.
 
-## 5. Build and test (once the Gradle project exists)
+```powershell
+"no" | avdmanager create avd -n readily_api28 -k "system-images;android-28;default;x86_64" -d pixel_c --force
+```
 
-```bash
-./gradlew.bat ktlintCheck lintDebug assembleDebug testDebugUnitTest
-./gradlew.bat installDebug
+Piping `"no"` answers the custom-hardware prompt, so the command does not hang.
+
+Edit `config.ini` in the AVD folder. That is `$env:USERPROFILE\.android\avd\readily_api28.avd`, or the folder under `$env:ANDROID_AVD_HOME` if that variable is set.
+
+- Set `hw.ramSize` to no more than half of the host's RAM. Read the host's RAM with `(Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB`.
+- Check that `hw.audioInput=yes` is there, so the emulator uses this PC's microphone.
+
+```powershell
+Start-Process emulator -ArgumentList '-avd','readily_api28','-no-snapshot-save'
+adb wait-for-device; adb shell getprop sys.boot_completed   # repeat until it prints 1
+```
+
+Emulator memory and speed figures are not device figures; never report them as such.
+
+## 7. Build and test (once the Gradle project exists)
+
+```powershell
+.\gradlew.bat ktlintCheck lintDebug assembleDebug testDebugUnitTest assembleDebugAndroidTest
+.\gradlew.bat installDebug
 ```
 
 ## Do not
 
 - Run anything that needs admin rights without asking.
-- Record children's voices on the test device; founders' adult voices only (master plan §8).
+- Record children's voices on the test device; use founders' adult voices only (master plan §8).
 - Commit model binaries, recordings or `local.properties`.
