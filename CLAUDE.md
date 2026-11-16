@@ -4,7 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-readiLY is pre-implementation: there is no application code, no package manifest, and no chosen tech stack yet. The repository currently contains business/planning docs and agent tooling only. Do not assume a framework, language, or build system — confirm with the user or check `docs/startup qc/` and any OpenSpec changes before writing code.
+readiLY is a native Android app (offline oral-reading assessment for Grade 1–3 teachers) being built in phases. **Start every build session with `.agents/plans/00-master-build-plan.md`** — it holds the locked stack, the hard constraints, the phase order and gates, and the overrides to plans `01`–`07`. Where it disagrees with any other doc, it wins.
+
+- **Stack (locked 2026-07-18):** Kotlin, Jetpack Compose + Material 3, MVVM, Hilt, Room, sherpa-onnx (on-device ASR), Supabase for optional sync. Single `:app` module, package `com.readily.app`, minSdk 28.
+- **Hard constraints, in one line each:** works fully offline; no seq2seq recogniser (no Whisper/Moonshine); audio never leaves the device; cloud identity is initials + LRN only; English-only automatic scoring; original passages only; no predictive claims. Details in §2 of the master plan.
+- `landing/` is a separate static page (HTML/CSS/vanilla JS); it is not part of the app.
+
+Android commands (from the repo root, once phase 2 creates the Gradle project): `gradlew.bat assembleDebug`, `gradlew.bat testDebugUnitTest`, `gradlew.bat ktlintCheck lintDebug`, `adb devices`. Toolchain: JDK 17 (`JAVA_HOME`) and the Android SDK command-line tools (`ANDROID_HOME`).
 
 Business/product context lives in `docs/startup qc/`:
 - `ReadiLY_Business Plan V1.md`, `ReadiLY_Lean_Canvas.md`, `ReadiLY_Pitch_Deck.md` — product concept, market, positioning
@@ -12,7 +18,7 @@ Business/product context lives in `docs/startup qc/`:
 
 ## Spec-driven workflow (OpenSpec)
 
-This repo uses OpenSpec (`openspec/`) for spec-driven change management, with matching slash commands installed for both this agent (`.agent/`) and Codex (`.codex/`). `openspec/specs/` and `openspec/changes/` are currently empty — no capabilities have been spec'd yet.
+This repo uses OpenSpec (`openspec/`) for spec-driven change management, with matching slash commands installed for both this agent (`.agent/`) and Codex (`.codex/`). `openspec/specs/` and `openspec/changes/` are currently empty; the Android build is driven by the plans in `.agents/plans/`, not by OpenSpec changes.
 
 Workflow commands (`/opsx:*`):
 - `/opsx:explore` — think through a problem before committing to a change; never writes code
@@ -23,7 +29,7 @@ Workflow commands (`/opsx:*`):
 
 Useful raw CLI: `openspec status --change "<name>" --json`, `openspec list --json`.
 
-`openspec/config.yaml` has an empty `context:` block — once a stack is chosen, fill it in there so it's surfaced to future artifact generation.
+`openspec/config.yaml` `context:` carries the stack and hard constraints so they reach generated artifacts; keep it in step with the master plan.
 
 ## Claude Code commands (`.claude/commands/`)
 
@@ -33,7 +39,7 @@ Useful raw CLI: `openspec status --change "<name>" --json`, `openspec list --jso
 - `/plan-feature` — deep-research a feature and write an implementation plan to `.agents/plans/`
 - `/execute` — implement a plan file produced by `/plan-feature`
 - `/commit` — stage and commit all uncommitted changes with an atomic, tagged message
-- `/init-project` — project bootstrap steps; **currently written for a Python/FastAPI/uv/Postgres/Docker stack that does not match this repo** — rewrite this command once the real stack is chosen, don't run it as-is
+- `/init-project` — set up the Android toolchain on a new machine and check the build
 
 ## Skills (`.claude/skills/`)
 
@@ -55,4 +61,4 @@ A standalone template library (PRD, TDD, coding standards, checklists, business 
 
 ## Git
 
-No commits exist yet on `main`. Remote: `https://github.com/carylatienza/readiLY.git`.
+`main` is the default branch; work on one branch and one PR per build phase, named `feat/android-<nn>-<slug>` (see §3 of the master plan). Leave PR #2 and the `docs/business-plan-v4-polish` branch alone unless a founder says otherwise. Remote: `https://github.com/carylatienza/readiLY.git`.

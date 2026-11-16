@@ -39,7 +39,7 @@ This is a greenfield repo — there is no application code. Read these docs for 
 
 - `.agents/plans/index.md` — Why: locked stack decisions, execution order, and the four hard constraints (offline-first, no Seq2Seq ASR, no raw audio to cloud, low-end hardware budget)
 - `docs/research/Technical Feasibility Assessment.md` — Why: hardware targets and phasing that justify minSdk 28 and the RAM budget
-- `CLAUDE.md` — Why: repo conventions; note the `/init-project` command is for a Python stack and must NOT be run
+- `CLAUDE.md` — Why: repo conventions; `/init-project` now sets up the Android toolchain (rewritten in phase 0); the master plan overrides this plan where they differ
 
 ### New Files to Create
 
